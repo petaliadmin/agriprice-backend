@@ -18,8 +18,10 @@ async function bootstrap() {
 
   // CORS pour le développement
   app.enableCors({
-    origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: '*',
+    credentials: false,
   });
 
   // Préfixe global de l'API
