@@ -234,7 +234,6 @@ export class PredictionsController {
       { name: 'Crop', schema: require('../../schemas').CropSchema },
     ]),
     HttpModule.register({ timeout: 10000 }),
-    ScheduleModule.forRoot(),
   ],
   controllers: [PredictionsController],
   providers: [PredictionsService],

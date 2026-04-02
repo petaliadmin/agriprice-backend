@@ -250,7 +250,7 @@ export class Alert {
   @Prop({ required: true })
   message: string;
 
-  @Prop({ required: true })
+  @Prop()
   messageLocal?: string;
 
   // Prix qui a déclenché l'alerte

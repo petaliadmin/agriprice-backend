@@ -2,7 +2,7 @@
 // MODULE RECOMMENDATIONS — Logique SELL / WAIT / STORE
 // ============================================================
 
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards, Request } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -143,9 +143,8 @@ export class RecommendationsController {
 
   @Get('farmer/all')
   @ApiOperation({ summary: 'Toutes les recommandations pour l\'agriculteur connecté' })
-  async getForFarmer(@Query('region') region: string, @Param() params, @Query() query) {
-    // Note: Injecter userId depuis JWT guard dans la version complète
-    return this.service.getRecommendationsForFarmer('userId_from_jwt', region || 'Dakar');
+  async getForFarmer(@Request() req, @Query('region') region: string) {
+    return this.service.getRecommendationsForFarmer(req.user._id.toString(), region || 'Dakar');
   }
 }
 
